@@ -1,7 +1,11 @@
 class Neural{
-    constructor(){
+    constructor(index, info){
         this._value = 0;
-        this._weightList = [];
+        if (index == info.length - 1 ){
+
+        }else{
+            this._weightList = [];
+        }
     }
     setRandomWeightList(){
         this._weightList.forEach((v, k)=>{
@@ -13,10 +17,10 @@ class Neural{
         return Math.random() * 2 - 1;
     }
     getValue(){
-        return this._value;
+        
     }
-    getWeight(){
-        return this._weight;
+    getWeightList(){
+        return this._weightList;
     }
 
 }

@@ -1,11 +1,13 @@
 import NeuralLayer from "./NeuralLayer";
 
 class NeuralNetwork{
-    constructor(info){
+    constructor(){
         this._neuralLayerList = [];
-        for (let i = 0 ; i < info.length ; i ++){
-            this._neuralLayerList.push(new NeuralLayer(info));
+        const info = [4, 2];
+        for (let i = 0 ;i < 2 ; i ++){
+            this._neuralLayerList.push(new NeuralLayer(i, info));
         }
+        
     }
     
 }
