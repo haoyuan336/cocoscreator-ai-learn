@@ -23,6 +23,7 @@ class NeuralNetwork {
                 for (let h = 0; h < lastNeuralList.length; h++) {
                     neuralList[j].value += lastNeuralList[h].value * lastNeuralList[h].weightList[j];
                 }
+                neuralList[j].value = this.actionFunction(neuralList[j].value);
             }
         }
         let lastNeuralList = this._neuralLayerList[this._neuralLayerList.length - 1].neuralList;
@@ -32,9 +33,37 @@ class NeuralNetwork {
             for (let j = 0; j < beforNeuralList.length; j++) {
                 lastNeuralList[i].value += beforNeuralList[j].weightList[i];
             }
+            lastNeuralList[i].value = this.actionFunction(lastNeuralList[i].value);
+
         }
         return cc.v2(lastNeuralList[0].value, lastNeuralList[1].value);
 
+    }
+    actionFunction(value) {
+        let p = 1;
+        return 1 / (1 + Math.pow(Math.E, - value / p)) - 0.5;
+    }
+    getDNA() {
+        let dnaList = [];
+        for (let i = 0; i < this._neuralLayerList.length - 1; i++) {
+            let neuralList = this._neuralLayerList[i].neuralList;
+            let weightsList = [];
+            for (let j = 0; j < neuralList.length; j++) {
+                let neural = neuralList[j];
+                weightsList.push(neural.weightList);
+            }
+            dnaList.push(weightsList);
+        }
+        return dnaList;
+    }
+    loadDNA(dna) {
+        for (let i = 0; i < this._neuralLayerList.length - 1; i++) {
+            let neuralList = this._neuralLayerList[i].neuralList;
+            for (let j = 0; j < neuralList.length; j++) {
+                let neural = neuralList[j];
+                neural.weightList = dna[i][j];
+            }
+        }
     }
 }
 export default NeuralNetwork;

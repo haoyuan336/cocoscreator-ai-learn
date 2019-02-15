@@ -7,13 +7,8 @@ class Neural {
 
                 this.weightList.push(1);
             }
-            // console.log("index = ", index);
-            // console.log("weight list = " , this.weightList);
             this.setRandomWeightList();
-        } else {
-            console.log("输出层");
-        }
-
+        } 
     }
     setRandomWeightList() {
         for (let i = 0; i < this.weightList.length; i++) {
@@ -23,8 +18,5 @@ class Neural {
     getRandomWeight() {
         return Math.random() * 2 - 1;
     }
-
-
-
 }
 export default Neural;
